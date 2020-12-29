@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: udagram-frontend-service
+  name: udagram-frontend
   labels:
     run: udagram-frontend
 spec:

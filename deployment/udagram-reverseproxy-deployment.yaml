@@ -1,7 +1,7 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: udagram-reverseproxy-deployment
+  name: udagram-reverseproxy
 spec:
   selector:
     matchLabels:

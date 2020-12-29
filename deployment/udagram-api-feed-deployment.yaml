@@ -1,7 +1,7 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: udagram-api-feed-deployment
+  name: udagram-api-feed
 spec:
   selector:
     matchLabels:
@@ -17,6 +17,13 @@ spec:
         image: datacamp264/udagram-api-feed:latest
         ports:
         - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthy
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
         env:
         - name: POSTGRES_HOST
           valueFrom:
