@@ -15,7 +15,7 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t udagram-frontend udagram-frontend/docker/. #Frontend
+  - docker build -t udagram-frontend udagram-frontend/. #Frontend
   - docker tag udagram-frontend datacamp264/udagram-frontend:latest
   - docker build -t udagram-api-auth udagram-api-auth/docker/.   #Feed API
   - docker tag udagram-api-auth datacamp264/udagram-api-auth:latest
