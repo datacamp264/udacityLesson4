@@ -1,0 +1,65 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: udagram-api-feed-deployment
+spec:
+  selector:
+    matchLabels:
+      app: udagram-api-feed
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: udagram-api-feed
+    spec:
+      containers:
+      - name: udagram-api-feed
+        image: datacamp264/udagram-api-feed:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: POSTGRES_HOST
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: POSTGRES_DB
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: JWT_SECRET
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: AWS_BUCKET              
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: AWS_REGION              
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: AWS_PROFILE                                          
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: URL              

@@ -21,6 +21,8 @@ script:
   - docker tag udagram-api-auth datacamp264/udagram-api-auth:latest
   - docker build -t udagram-api-feed udagram-api-feed/.    #Auth API
   - docker tag udagram-api-feed datacamp264/udagram-api-feed:latest
+  - docker build -t udagram-reverseproxy udagram-reverseproxy/.    #reverseproxy
+  - docker tag udagram-reverseproxy datacamp264/udagram-reverseproxy:latest
 
 
 
@@ -31,3 +33,4 @@ after_success:
   - docker push datacamp264/udagram-frontend
   - docker push datacamp264/udagram-api-auth
   - docker push datacamp264/udagram-api-feed
+  - docker push datacamp264/udagram-reverseproxy

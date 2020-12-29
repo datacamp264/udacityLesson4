@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udagram-api-auth-service
+  labels:
+    run: udagram-api-auth
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    run: udagram-api-auth

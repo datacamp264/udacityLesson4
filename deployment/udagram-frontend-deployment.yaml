@@ -1,0 +1,19 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: udagram-frontend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: udagram-frontend
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: udagram-frontend
+    spec:
+      containers:
+      - name: udagram-frontend
+        image: datacamp264/udagram-frontend:latest
+        ports:
+        - containerPort: 80

@@ -1,0 +1,50 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: udagram-api-auth-deployment
+spec:
+  selector:
+    matchLabels:
+      app: udagram-api-auth
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: udagram-api-auth
+    spec:
+      containers:
+      - name: udagram-api-auth
+        image: datacamp264/udagram-api-auth:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: POSTGRES_HOST
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: POSTGRES_DB
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: JWT_SECRET
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-vars-udagram
+              key: URL              
