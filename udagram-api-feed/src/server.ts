@@ -1,5 +1,5 @@
 import cors from 'cors';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import {sequelize} from './sequelize';
 
 import {IndexRouter} from './controllers/v0/index.router';
@@ -7,9 +7,10 @@ import {IndexRouter} from './controllers/v0/index.router';
 import bodyParser from 'body-parser';
 import {config} from './config/config';
 import {V0_FEED_MODELS} from './controllers/v0/model.index';
-
+import morgan from 'morgan';
 
 (async () => {
+  console.log(`Postgres URL: ${config.host}`)
   await sequelize.addModels(V0_FEED_MODELS);
   await sequelize.sync();
 
@@ -17,7 +18,7 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
   const port = process.env.PORT || 8080;
 
   app.use(bodyParser.json());
-
+  app.use(morgan('combined'))
   app.use(cors({
     allowedHeaders: [
       'Origin', 'X-Requested-With',
@@ -30,8 +31,13 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
 
   app.use('/api/v0/', IndexRouter);
 
+  //healtcheck for
+  app.get('/healthy', async (req: Request, res: Response) => {
+    res.status(200).send('healthy');
+  });
+
   // Root URI call
-  app.get( '/', async ( req, res ) => {
+  app.get( '/', async (req: Request, res: Response) => {
     res.send( '/api/v0/' );
   } );
 
