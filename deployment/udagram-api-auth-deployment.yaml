@@ -24,6 +24,11 @@ spec:
           initialDelaySeconds: 10
           periodSeconds: 10
           successThreshold: 1
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
         env:
         - name: POSTGRES_HOST
           valueFrom:
