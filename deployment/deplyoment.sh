@@ -7,5 +7,3 @@ kubectl apply -f udagram-frontend-deployment.yaml
 kubectl apply -f udagram-frontend-service.yaml
 kubectl apply -f udagram-reverseproxy-deployment.yaml
 kubectl apply -f udagram-reverseproxy-service.yaml
-
-curl --request GET udagram-api-feed:8080/api/v0/feed

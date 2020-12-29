@@ -6,8 +6,9 @@ metadata:
     run: udagram-api-auth
 spec:
   ports:
-  - port: 8080
+  - name: http
+    port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    run: udagram-api-auth
+    app: udagram-api-auth
