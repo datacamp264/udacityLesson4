@@ -28,12 +28,7 @@ import morgan from 'morgan';
     origin: config.url,
   }));
 
-  app.use('/api/v0/', IndexRouter);
-
-  // Root URI call
-  app.get( '/', async (req: Request, res: Response) => {
-    res.send( '/api/v0/' );
-  } );
+  app.use('/', IndexRouter);
 
   //healtcheck for 
   app.get('/healthy', async (req: Request, res: Response) => {
